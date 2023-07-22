@@ -1,6 +1,7 @@
 import logging
 
 import fire
+
 from txdnet import llm
 from txdnet import utils
 
@@ -8,7 +9,6 @@ logger = logging.getLogger(__name__)
 
 
 class Commands:
-
     def extract_drug_moa_graph(
         self,
         model: str = llm.DEFAULT_MODEL,
@@ -18,7 +18,9 @@ class Commands:
         logger.info(
             f"Starting drug MoA extraction (model={model}, input_filename={input_filename}, output_filename={output_filename})"
         )
-        with (utils.paths.data / "input" / input_filename).open("r", encoding="utf-8") as f:
+        with (utils.paths.data / "input" / input_filename).open(
+            "r", encoding="utf-8"
+        ) as f:
             text = f.read().strip()
         graph_description = llm.retry(llm.chat_completion_from_template)(
             utils.paths.prompts / "drug_moa_graph_description.txt",

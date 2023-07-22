@@ -27,6 +27,7 @@ def get_paths() -> Paths:
 
 paths = get_paths()
 
+
 def get_colormap(values: Sequence[Hashable], cmap: str) -> dict[Hashable, str]:
     """Map any sequence of values (arbitrarily) to hex colors in a given matplotlib colorscale."""
     colormap = plt.get_cmap(cmap)

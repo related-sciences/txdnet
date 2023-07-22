@@ -38,6 +38,7 @@ def chat_completion_from_template(
         prompt = f.read().strip().format(**template_args)
     return chat_completion(prompt, model=model, temperature=temperature)
 
+
 def chat_completion(
     prompt: str,
     model: str = DEFAULT_MODEL,
@@ -54,6 +55,9 @@ def chat_completion(
     logger.info(f"Response:\n{response}")
     return response
 
+
 def text_embedding(text: str, model: str = "text-embedding-ada-002") -> list[float]:
-    text = text.replace("\n", " ")  # see https://platform.openai.com/docs/guides/embeddings/use-cases
+    text = text.replace(
+        "\n", " "
+    )  # see https://platform.openai.com/docs/guides/embeddings/use-cases
     return openai.Embedding.create(input=[text], model=model)["data"][0]["embedding"]  # type: ignore[no-any-return]
