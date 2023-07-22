@@ -1,0 +1,208 @@
+2023-07-21 21:44:59,409|INFO|cli|extract_drug_moa_graph| Starting drug MoA extraction (model=gpt-4, input_filename=poc_rituximab_moa.txt, output_filename=poc_rituximab_graph_json.txt)
+2023-07-21 21:44:59,410|INFO|llm|chat_completion| Prompt (temperature=None, model=gpt-4):
+Text will be provided that contains information about the mechanism of action for a particular drug.
+
+Identify any proteins, genes, variants, phenotypes, metabolites, pathways, biological functions or other biological entities of any kind that are linked to the pathogenesis of any diseases named as indications for the drug.
+
+Requirements:
+
+- Assume the intent of this information will be to build a graph/network containing these entities and the relations between them
+- Ignore any information that cannot be implicated (directly or indirectly) in a mechanistic link between the drug and any one disease
+- Include as much detail as possible about these mechanistic links by enumerating all entities and relations that are a part of them
+- Ensure that at least one path exists from the drug to each disease, but do so by constructing paths through as many relevant intermediaries as possible
+- Add edges where necessary to ensure that ALL entities are connected to at least one other entity through an appropriate edge/relation.
+
+Let's think step by step.  List the nodes first and then the types of edges/relations.  Attempt to categorize the entities and relations as well, such that those with sufficient likeliness have the same category.
+
+--- BEGIN TEXT ---
+Rituximab binds specifically to the antigen CD20 (human B-lymphocyte-restricted differentiation antigen, Bp35), a hydrophobic transmembrane protein with a molecular weight of approximately 35 kD located on pre-B and mature B lymphocytes. The antigen is expressed on > 90% of B-cell non-Hodgkin’s lymphomas (NHL), but the antigen is not found on hematopoietic stem cells, pro-B-cells, normal plasma cells or other normal tissues. CD20 regulates an early step(s) in the activation process for cell cycle initiation and differentiation, and possibly functions as a calcium ion channel. CD20 is not shed from the cell surface and does not internalize upon antibody binding. Free CD20 antigen is not found in the circulation.
+
+B cells are believed to play a role in the pathogenesis of rheumatoid arthritis (RA) and associated chronic synovitis. In this setting, B cells may be acting at multiple sites in the autoimmune/inflammatory process, including through production of rheumatoid factor (RF) and other autoantibodies, antigen presentation, T-cell activation, and/or proinflammatory cytokine production.
+
+Mechanism of Action: The Fab domain of rituximab binds to the CD20 antigen on B lymphocytes, and the Fc domain recruits immune effector functions to mediate B-cell lysis in vitro. Possible mechanisms of cell lysis include complement-dependent cytotoxicity (CDC) and antibody-dependent cell mediated cytotoxicity (ADCC). The antibody has been shown to induce apoptosis in the DHL-4 human B-cell lymphoma line.
+
+Normal Tissue Cross-reactivity: Rituximab binding was observed on lymphoid cells in the thymus, the white pulp of the spleen, and a majority of B lymphocytes in peripheral blood and lymph nodes. Little or no binding was observed in the non-lymphoid tissues examined.
+--- END TEXT ---
+2023-07-21 21:45:27,363|INFO|llm|chat_completion| Response:
+Nodes:
+1. Rituximab (Drug)
+2. CD20 (Protein)
+3. B lymphocytes (Cell type)
+4. Non-Hodgkin's lymphomas (Disease)
+5. Hematopoietic stem cells (Cell type)
+6. Pro-B-cells (Cell type)
+7. Normal plasma cells (Cell type)
+8. Calcium ion channel (Biological Function)
+9. Cell cycle initiation (Biological Process)
+10. Cell differentiation (Biological Process)
+11. Rheumatoid Arthritis (Disease)
+12. Chronic synovitis (Disease)
+13. Rheumatoid factor (Protein)
+14. Autoantibodies (Protein)
+15. Antigen Presentation (Biological Process)
+16. T-cell activation (Biological Process)
+17. Proinflammatory cytokine production (Biological Process)
+18. Fab domain (Part of protein)
+19. Fc domain (Part of protein)
+20. Immune effector functions (Biological Function)
+21. B-cell lysis (Biological Process)
+22. Complement-dependent cytotoxicity (CDC) (Biological Process)
+23. Antibody-dependent cell mediated cytotoxicity (ADCC) (Biological Process)
+24. Apoptosis (Biological Process)
+25. DHL-4 human B-cell lymphoma line (Cell line)
+26. Thymus lymphoid cells (Cell type)
+27. Spleen white pulp lymphoid cells (Cell type)
+28. Peripheral blood B lymphocytes (Cell type)
+29. Lymph node B lymphocytes (Cell type)
+
+Relations/Edges:
+1. Rituximab binds to CD20
+2. CD20 expressed on B lymphocytes and non-Hodgkin's lymphomas
+3. CD20 is not expressed on Hematopoietic stem cells, Pro-B-cells, Normal plasma cells
+4. CD20 regulates Cell cycle initiation and Cell differentiation, among other possible functions
+5. B cells contribute to the development of Rheumatoid Arthritis and Chronic synovitis through mechanisms including the generation of Rheumatoid factor and Autoantibodies, Antigen Presentation, Proinflammatory cytokine production, and T-cell activation
+6. Fab domain of rituximab binds to CD20 antigen on B lymphocytes
+7. Fc domain of rituximab recruits Immune effector functions leading to B-cell lysis
+8. Rituximab-inducted B-cell lysis could occur through CDC or ADCC
+9. Rituximab can induce apoptosis in DHL-4 human B-cell lymphoma line
+10. Rituximab binding observed on lymphoid cells in the thymus, the white pulp of the spleen,and a majority of B lymphocytes in peripheral blood and lymph nodes.
+2023-07-21 21:45:27,364|INFO|llm|chat_completion| Prompt (temperature=None, model=gpt-4):
+The following text describes a graph (aka network) containing biological entities and relations between them involved in the mechanism of action of a drug on one more diseases:
+
+--- BEGIN DESCRIPTION ---
+Nodes:
+1. Rituximab (Drug)
+2. CD20 (Protein)
+3. B lymphocytes (Cell type)
+4. Non-Hodgkin's lymphomas (Disease)
+5. Hematopoietic stem cells (Cell type)
+6. Pro-B-cells (Cell type)
+7. Normal plasma cells (Cell type)
+8. Calcium ion channel (Biological Function)
+9. Cell cycle initiation (Biological Process)
+10. Cell differentiation (Biological Process)
+11. Rheumatoid Arthritis (Disease)
+12. Chronic synovitis (Disease)
+13. Rheumatoid factor (Protein)
+14. Autoantibodies (Protein)
+15. Antigen Presentation (Biological Process)
+16. T-cell activation (Biological Process)
+17. Proinflammatory cytokine production (Biological Process)
+18. Fab domain (Part of protein)
+19. Fc domain (Part of protein)
+20. Immune effector functions (Biological Function)
+21. B-cell lysis (Biological Process)
+22. Complement-dependent cytotoxicity (CDC) (Biological Process)
+23. Antibody-dependent cell mediated cytotoxicity (ADCC) (Biological Process)
+24. Apoptosis (Biological Process)
+25. DHL-4 human B-cell lymphoma line (Cell line)
+26. Thymus lymphoid cells (Cell type)
+27. Spleen white pulp lymphoid cells (Cell type)
+28. Peripheral blood B lymphocytes (Cell type)
+29. Lymph node B lymphocytes (Cell type)
+
+Relations/Edges:
+1. Rituximab binds to CD20
+2. CD20 expressed on B lymphocytes and non-Hodgkin's lymphomas
+3. CD20 is not expressed on Hematopoietic stem cells, Pro-B-cells, Normal plasma cells
+4. CD20 regulates Cell cycle initiation and Cell differentiation, among other possible functions
+5. B cells contribute to the development of Rheumatoid Arthritis and Chronic synovitis through mechanisms including the generation of Rheumatoid factor and Autoantibodies, Antigen Presentation, Proinflammatory cytokine production, and T-cell activation
+6. Fab domain of rituximab binds to CD20 antigen on B lymphocytes
+7. Fc domain of rituximab recruits Immune effector functions leading to B-cell lysis
+8. Rituximab-inducted B-cell lysis could occur through CDC or ADCC
+9. Rituximab can induce apoptosis in DHL-4 human B-cell lymphoma line
+10. Rituximab binding observed on lymphoid cells in the thymus, the white pulp of the spleen,and a majority of B lymphocytes in peripheral blood and lymph nodes.
+--- END DESCRIPTION ---
+
+Convert this description into a structed graph representation in node-link JSON format, using all of the above context where necessary. Requirements:
+
+- Include at least all of the entities (nodes) and relations (edges) included in the description
+- Use integer ids for the nodes and a `label` property containing their names
+- Add a node `type` property that best captures what kind of node it is
+- Include an edge `type` property describing the nature of the relation between nodes 
+- Ensure that at least one path exists from the drug to each disease, but do so by constructing paths through as many relevant intermediaries as possible
+- Add edges where necessary to ensure that ALL entities are connected to at least one other entity through an appropriate edge/relation.
+
+Here is an example showing a partial response with placeholder values:
+
+--- BEGIN EXAMPLE JSON ---
+{
+  "nodes": [
+    {"id": $node_integer_id, "label": $node_label, "type": $node_type},
+    ...
+  ],
+  "links": [
+    {"source": $node_integer_id_1, "target": $node_integer_id_2, "type": $edge_type},
+    ...
+  ]
+}
+--- END EXAMPLE JSON ---
+
+Report only the JSON data.  Do not include other text or explanations of any kind.
+
+node-link JSON:
+2023-07-21 21:46:30,437|INFO|llm|chat_completion| Response:
+{
+  "nodes": [
+    {"id": 1, "label": "Rituximab", "type": "Drug"},
+    {"id": 2, "label": "CD20", "type": "Protein"},
+    {"id": 3, "label": "B lymphocytes", "type": "Cell type"},
+    {"id": 4, "label": "Non-Hodgkin's lymphomas", "type": "Disease"},
+    {"id": 5, "label": "Hematopoietic stem cells", "type": "Cell type"},
+    {"id": 6, "label": "Pro-B-cells", "type": "Cell type"},
+    {"id": 7, "label": "Normal plasma cells", "type": "Cell type"},
+    {"id": 8, "label": "Calcium ion channel", "type": "Biological Function"},
+    {"id": 9, "label": "Cell cycle initiation", "type": "Biological Process"},
+    {"id": 10, "label": "Cell differentiation", "type": "Biological Process"},
+    {"id": 11, "label": "Rheumatoid Arthritis", "type": "Disease"},
+    {"id": 12, "label": "Chronic synovitis", "type": "Disease"},
+    {"id": 13, "label": "Rheumatoid factor", "type": "Protein"},
+    {"id": 14, "label": "Autoantibodies", "type": "Protein"},
+    {"id": 15, "label": "Antigen Presentation", "type": "Biological Process"},
+    {"id": 16, "label": "T-cell activation", "type": "Biological Process"},
+    {"id": 17, "label": "Proinflammatory cytokine production", "type": "Biological Process"},
+    {"id": 18, "label": "Fab domain", "type": "Part of protein"},
+    {"id": 19, "label": "Fc domain", "type": "Part of protein"},
+    {"id": 20, "label": "Immune effector functions", "type": "Biological Function"},
+    {"id": 21, "label": "B-cell lysis", "type": "Biological Process"},
+    {"id": 22, "label": "Complement-dependent cytotoxicity (CDC)", "type": "Biological Process"},
+    {"id": 23, "label": "Antibody-dependent cell mediated cytotoxicity (ADCC)", "type": "Biological Process"},
+    {"id": 24, "label": "Apoptosis", "type": "Biological Process"},
+    {"id": 25, "label": "DHL-4 human B-cell lymphoma line", "type": "Cell line"},
+    {"id": 26, "label": "Thymus lymphoid cells", "type": "Cell type"},
+    {"id": 27, "label": "Spleen white pulp lymphoid cells", "type": "Cell type"},
+    {"id": 28, "label": "Peripheral blood B lymphocytes", "type": "Cell type"},
+    {"id": 29, "label": "Lymph node B lymphocytes", "type": "Cell type"}
+  ],
+  "links": [
+    {"source": 1, "target": 2, "type": "binds to"},
+    {"source": 2, "target": 3, "type": "expressed on"},
+    {"source": 2, "target": 4, "type": "expressed on"},
+    {"source": 2, "target": 5, "type": "not expressed on"},
+    {"source": 2, "target": 6, "type": "not expressed on"},
+    {"source": 2, "target": 7, "type": "not expressed on"},
+    {"source": 2, "target": 9, "type": "regulates"},
+    {"source": 2, "target": 10, "type": "regulates"},
+    {"source": 18, "target": 2, "type": "binds to"},
+    {"source": 1, "target": 18, "type": "contains"},
+    {"source": 19, "target": 20, "type": "recruits"},
+    {"source": 1, "target": 19, "type": "contains"},
+    {"source": 1, "target": 21, "type": "induces"},
+    {"source": 21, "target": 22, "type": "occurs through"},
+    {"source": 21, "target": 23, "type": "occurs through"},
+    {"source": 1, "target": 24, "type": "can induce"},
+    {"source": 1, "target": 25, "type": "binds to"},
+    {"source": 1, "target": 26, "type": "binds to"},
+    {"source": 1, "target": 27, "type": "binds to"},
+    {"source": 1, "target": 28, "type": "binds to"},
+    {"source": 1, "target": 29, "type": "binds to"},
+    {"source": 3, "target": 11, "type": "contribute to"},
+    {"source": 3, "target": 12, "type": "contribute to"},
+    {"source": 3, "target": 13, "type": "generates"},
+    {"source": 3, "target": 14, "type": "generates"},
+    {"source": 3, "target": 15, "type": "involved in"},
+    {"source": 3, "target": 16, "type": "activates"},
+    {"source": 3, "target": 17, "type": "induces"}
+  ]
+}
+2023-07-21 21:46:30,439|INFO|cli|extract_drug_moa_graph| Drug MoA extraction extraction complete (/Users/eczech/repos/rs/txdnet/data/output/poc_rituximab_graph_json.txt)

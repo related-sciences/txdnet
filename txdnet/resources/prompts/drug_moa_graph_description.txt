@@ -1,0 +1,17 @@
+Text will be provided that contains information about the mechanism of action for a particular drug.
+
+Identify any proteins, genes, variants, phenotypes, metabolites, pathways, biological functions or other biological entities of any kind that are linked to the pathogenesis of any diseases named as indications for the drug.
+
+Requirements:
+
+- Assume the intent of this information will be to build a graph/network containing these entities and the relations between them
+- Ignore any information that cannot be implicated (directly or indirectly) in a mechanistic link between the drug and any one disease
+- Include as much detail as possible about these mechanistic links by enumerating all entities and relations that are a part of them
+- Ensure that at least one path exists from the drug to each disease, but do so by constructing paths through as many relevant intermediaries as possible
+- Add edges where necessary to ensure that ALL entities are connected to at least one other entity through an appropriate edge/relation.
+
+Let's think step by step.  List the nodes first and then the types of edges/relations.  Attempt to categorize the entities and relations as well, such that those with sufficient likeliness have the same category.
+
+--- BEGIN TEXT ---
+{text}
+--- END TEXT ---

@@ -1,0 +1,33 @@
+The following text describes a graph (aka network) containing biological entities and relations between them involved in the mechanism of action of a drug on one more diseases:
+
+--- BEGIN DESCRIPTION ---
+{description}
+--- END DESCRIPTION ---
+
+Convert this description into a structed graph representation in node-link JSON format, using all of the above context where necessary. Requirements:
+
+- Include at least all of the entities (nodes) and relations (edges) included in the description
+- Use integer ids for the nodes and a `label` property containing their names
+- Add a node `type` property that best captures what kind of node it is
+- Include an edge `type` property describing the nature of the relation between nodes 
+- Ensure that at least one path exists from the drug to each disease, but do so by constructing paths through as many relevant intermediaries as possible
+- Add edges where necessary to ensure that ALL entities are connected to at least one other entity through an appropriate edge/relation.
+
+Here is an example showing a partial response with placeholder values:
+
+--- BEGIN EXAMPLE JSON ---
+{{
+  "nodes": [
+    {{"id": $node_integer_id, "label": $node_label, "type": $node_type}},
+    ...
+  ],
+  "links": [
+    {{"source": $node_integer_id_1, "target": $node_integer_id_2, "type": $edge_type}},
+    ...
+  ]
+}}
+--- END EXAMPLE JSON ---
+
+Report only the JSON data.  Do not include other text or explanations of any kind.
+
+node-link JSON:
